@@ -1,6 +1,6 @@
 # OMCshade
 
-Minimal C++23 GLFW application.
+A rendering-focused sandbox game (-engine) written in C++ and OpenGL.
 
 ## Build
 
