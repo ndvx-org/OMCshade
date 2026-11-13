@@ -1,2 +1,16 @@
 # OMCshade
-A rendering-focused sandbox game - more info in description...
+
+Minimal C++23 GLFW application.
+
+## Build
+
+```bash
+cmake -S . -B build
+cmake --build build
+```
+
+## Run
+
+```bash
+./build/omcshade
+```
