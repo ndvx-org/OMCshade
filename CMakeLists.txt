@@ -13,10 +13,12 @@ find_package(glfw3 CONFIG QUIET)
 if(NOT TARGET glfw)
   include(FetchContent)
   if(OMCSHADE_HEADLESS)
+    set(GLFW_BUILD_COCOA OFF CACHE BOOL "" FORCE)
+    set(GLFW_BUILD_WIN32 OFF CACHE BOOL "" FORCE)
     set(GLFW_BUILD_WAYLAND OFF CACHE BOOL "" FORCE)
     set(GLFW_BUILD_X11 OFF CACHE BOOL "" FORCE)
     set(GLFW_BUILD_NULL ON CACHE BOOL "" FORCE)
-  else()
+  elseif(UNIX AND NOT APPLE)
     find_program(OMCSHADE_WAYLAND_SCANNER wayland-scanner)
     find_package(X11 QUIET)
 
@@ -38,6 +40,9 @@ if(NOT TARGET glfw)
       set(GLFW_BUILD_NULL ON CACHE BOOL "" FORCE)
       message(STATUS "No X11 or Wayland toolchain found; enabling GLFW null backend")
     endif()
+  elseif(WIN32 OR APPLE)
+    # GLFW selects the native platform backend on Windows and macOS.
+    set(GLFW_BUILD_NULL OFF CACHE BOOL "" FORCE)
   endif()
   FetchContent_Declare(
     glfw
