@@ -30,3 +30,11 @@ Multi-config generators (Visual Studio, Xcode):
 cmake --build build --config Release
 ./build/Release/omcshade      # Windows: .\build\Release\omcshade.exe
 ```
+
+On Windows, use the Visual Studio generator and run the generated `.exe`:
+
+```powershell
+cmake -S . -B build
+cmake --build build --config Release
+.\build\Release\omcshade.exe
+```
